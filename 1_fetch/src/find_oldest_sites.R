@@ -14,6 +14,3 @@ find_oldest_site <- function(state, parameter) {
     slice(1) # OK has two sites tied for first; just take one
   return(best_site)
 }
-find_oldest_sites <- function(states, parameter) {
-  purrr::map_df(states, find_oldest_site, parameter)
-}

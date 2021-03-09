@@ -24,17 +24,14 @@ states <- c("WI", "VA", "NY")
 
 parameter <- '00060'
 
-# First, identify sites
-t1 <- tar_target(oldest_active_sites, find_oldest_sites(states, parameter))
-
 # Then do tasks by state
 targets_by_state <- tar_map(
   values = tibble(state_abbr = states, 
                   state_info_file = sprintf("1_fetch/tmp/inventory_%s.tsv", state_abbr),
                   plot_file = sprintf("3_visualize/tmp/timeseries_%s.png", state_abbr)),
   names = state_abbr,
-  tar_target(state_info, filter(oldest_active_sites, state_cd == state_abbr)),
-  tar_target(state_data, get_site_data(state_info, parameter)),
+  tar_target(state_oldest_state, find_oldest_site(state_abbr, parameter)),
+  tar_target(state_data, get_site_data(state_oldest_state, parameter)),
   tar_target(state_timeseries_plot, plot_site_data(plot_file, state_data, parameter), format = "file"),
   tar_target(state_tally, tally_site_obs(state_data))
 )
@@ -42,8 +39,14 @@ targets_by_state <- tar_map(
 # Now that mapping is complete, put all remaining targets into single list
 # which is a `targets` requirement
 list(
-  t1,
   targets_by_state,
+  
+  # Combine state oldest infos
+  tar_combine(
+    oldest_active_sites,
+    targets_by_state$state_oldest_state,
+    command = dplyr::bind_rows(!!!.x)
+  ),
   
   # Combine obs into one obs tibble
   tar_combine(
