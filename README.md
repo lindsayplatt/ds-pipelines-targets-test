@@ -30,3 +30,7 @@ tar_make()
 Once it built, I added `NY` to `states` and checked what would update by running `tar_visnetwork()`. I got the following:
 
 ![image of what steps in my targets pipeline need to rebuild after the addition of NY](img/targets_pipeline_rebuild_with_NY.png)
+
+Here is what the network looks like with all 50 states! Too many targets to read :( You can pan on the diagram locally, but sadly they are super squished. Hopefully, `targets` can improve this type of view in the future.
+
+![image of the unreadable targets pipeline need to rebuild after the addition of NY](img/targets_pipeline_all_50.png)

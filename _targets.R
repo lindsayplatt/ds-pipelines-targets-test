@@ -16,11 +16,10 @@ source("3_visualize/src/map_sites.R")
 source("3_visualize/src/map_timeseries.R")
 
 # Some basic config:
-states <- c("WI", "VA", "NY")
-# states <- c('AL','AZ','AR','CA','CO','CT','DE','DC','FL','GA','ID','IL','IN','IA',
-#             'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
-#             'NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX',
-#             'UT','VT','VA','WA','WV','WI','WY','AK','HI','GU','PR')
+states <- c('AL','AZ','AR','CA','CO','CT','DE','DC','FL','GA','ID','IL','IN','IA',
+            'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
+            'NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX',
+            'UT','VT','VA','WA','WV','WI','WY','AK','HI','GU','PR')
 
 parameter <- '00060'
 
