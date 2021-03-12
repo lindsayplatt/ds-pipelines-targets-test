@@ -30,7 +30,7 @@ targets_by_state <- tar_map(
                   plot_file = sprintf("3_visualize/tmp/timeseries_%s.png", state_abbr)),
   names = state_abbr,
   tar_target(state_oldest_state, find_oldest_site(state_abbr, parameter)),
-  tar_target(state_data, get_site_data(state_oldest_state, parameter)),
+  tar_target(state_data, get_site_data(state_oldest_state, parameter), error = 'continue'),
   tar_target(state_timeseries_plot, plot_site_data(plot_file, state_data, parameter), format = "file"),
   tar_target(state_tally, tally_site_obs(state_data))
 )
