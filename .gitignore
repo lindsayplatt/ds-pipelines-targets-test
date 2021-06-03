@@ -2,7 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
-*.Rproj
-_targets/*
-*/out/*
+
+# Specific files/dirs to ignore for this pipeline
 */tmp/*
+*/out/*
+_targets
